@@ -1,0 +1,18 @@
+<div class="row">
+    <div class="col-lg-8 offset-lg-2 col-12 offset-0">
+        <div class="card">
+            <div class="card-header">
+                <span>Employees List</span>
+            </div>
+            <div class="card-body">
+                <img src="assets/images/loading.gif" alt="Loading" class="loading-img" *ngIf="loading">
+                <ul class="employees-list">
+                    <li *ngFor="let employee of employees">
+                        <h5 class="card-title">{{ employee.name }}</h5>
+                        <p class="card-text">{{ employee.age }}, {{ employee.gender }}</p>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

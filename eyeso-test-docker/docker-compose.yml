@@ -1,0 +1,47 @@
+version: '2'
+
+services:
+    db:
+        image: mariadb
+        container_name: eyeso_test_db
+        environment:
+            MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+            MYSQL_DATABASE: ${MYSQL_DATABASE}
+            MYSQL_USER: ${MYSQL_USER}
+            MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+        volumes:
+            - ./.data/db:/var/lib/mysql
+
+    php:
+        build: php-fpm/
+        container_name: eyeso_test_php
+        expose:
+            - "9000"
+        volumes:
+            - ./php-fpm/php.ini:/usr/local/etc/php/php.ini
+            - ${BACKEND_APP_PATH}:/var/www/backend
+        links:
+            - db
+
+    nginx:
+        build: nginx/
+        container_name: eyeso_test_nginx
+        links:
+            - php
+        volumes_from:
+            - php
+        ports:
+            - "8080:80"
+        volumes:
+            - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+            - ./nginx/eyeso_test_dev.conf:/etc/nginx/conf.d/eyeso_test.conf
+            - ${FRONTEND_APP_PATH}:/var/www/frontend
+            - ./logs/nginx/:/var/log/nginx
+
+    phpmyadmin:
+        image: phpmyadmin/phpmyadmin
+        container_name: eyeso_test_phpmyadmin
+        links:
+            - db
+        ports:
+            - "8082:80"

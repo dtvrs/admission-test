@@ -1,0 +1,29 @@
+.card-body {
+    position: relative;
+    min-height: 150px;
+
+    .loading-img {
+        z-index: 1;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        width: 150px;
+    }
+
+    .employees-list {
+        padding-left: 0;
+        z-index: 2;
+
+        li {
+            list-style-type: none;
+            border-bottom: 1px solid #000;
+            margin-bottom: 20px;
+
+            h5,
+            p {
+                margin-bottom: 10px;
+            }
+        }
+    }
+}
