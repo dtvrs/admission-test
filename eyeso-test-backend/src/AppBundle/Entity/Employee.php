@@ -1,6 +1,7 @@
 <?php namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Employee entity.
@@ -37,17 +38,34 @@ class Employee {
     protected $updated;
 
     /**
-    * @ORM\Column(type="string")
+    * @ORM\Column(type="string") 
+    * @Assert\NotBlank()
+    * @Assert\Length(
+    *      min = 1,
+    *      max = 255,
+    *      minMessage = "Employee's name must be at least {{ limit }} characters long",
+    *      maxMessage = "Employee's name cannot be longer than {{ limit }} characters"
+    * )
     */
     protected $name;
 
     /**
      * @ORM\Column(type="integer")
+     * @Assert\NotBlank()
+     * @Assert\GreaterThanOrEqual(
+     *     value = 18,
+     *     message = "Employee's age must be greater or equal to {{ compared_value }}"
+     * )
      */
     protected $age;
 
     /**
      * @ORM\Column(type="string")
+     * @Assert\NotBlank()
+     * @Assert\Regex(
+     *     pattern="/^(male|female)$/",
+     *     message="Employee's gender must be either 'male' or 'female'"
+     * )
      */
     protected $gender;
 
