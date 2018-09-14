@@ -35,20 +35,28 @@ class EmployeesController extends Controller {
 
         try {
             // get the employee list
-            $em = $this->getDoctrine()->getManager();
+            $em           = $this->getDoctrine()->getManager();
             $employeeRepo = $em->getRepository('AppBundle:Employee');
             $employeeList = $employeeRepo->findAll();
 
             // build an array with the employee data, such as it can be converted to JSON
             $returnData = [];
             foreach($employeeList as $employee) {
+                $job = $employee->getJob();
+                $job = $job === null ?: [
+                    'id'          => $job->getId(),
+                    'title'       => $job->getTitle(),
+                    'monthly_pay' => $job->getMonthlyPay(),
+                ];
+
                 $returnData[] = [
                     'id'        => $employee->getId(),
                     'created'   => $employee->getCreated(),
                     'updated'   => $employee->getUpdated(),
                     'name'      => $employee->getName(),
                     'gender'    => $employee->getGender(),
-                    'age'       => $employee->getAge()
+                    'age'       => $employee->getAge(),
+                    'job'       => $job,
                 ];
             }
 

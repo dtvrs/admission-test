@@ -10,6 +10,9 @@
                     <li *ngFor="let employee of employees">
                         <h5 class="card-title">{{ employee.name }}</h5>
                         <p class="card-text">{{ employee.age }}, {{ employee.gender }}</p>
+                        <p *ngIf="employee.job.title !== undefined">
+                            <strong>Job: </strong>{{ employee.job.title }} <small><span *ngIf="employee.job.monthly_pay !== undefined">(monthly pay of {{ employee.job.monthly_pay }}$)</span></small>
+                        </p>
                     </li>
                 </ul>
             </div>
