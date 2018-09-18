@@ -46,4 +46,8 @@ export class EmployeesComponent implements OnInit {
             }
         )
   }
+
+  downloadCSV()  {
+      this._apiService.downloadCSV()
+  }
 }

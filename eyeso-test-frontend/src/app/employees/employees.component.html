@@ -1,36 +1,53 @@
-<div class="row">
-    <div class="col-lg-8 offset-lg-2 col-12 offset-0">
-        <div class="card">
-            <div class="card-header">
-                <span>Employees List</span>
-                <a routerLink="/employee/create" class="btn btn-outline-info btn-sm float-right">Create Employee</a>
-            </div>
-            <div class="card-body">
-                <img src="assets/images/loading.gif" alt="Loading" class="loading-img" *ngIf="loading">
-                <ul class="employees-list">
-                    <li *ngFor="let employee of employees">
-                        <div class="row">
-                            <div class="col-10">
-                                <h5 class="card-title">{{ employee.name }}</h5>
-                                <p class="card-text">{{ employee.age }}, {{ employee.gender }}</p>
-                                <p *ngIf="employee.job.title !== undefined">
-                                    <strong>Job: </strong>{{ employee.job.title }} <small><span *ngIf="employee.job.monthly_pay !== undefined">(monthly pay of {{ employee.job.monthly_pay }}$)</span></small>
-                                </p>
-                            </div>
-                            <div class="col-2">
-                                <div class="row">
-                                    <div class="col-6">
-                                        <a routerLink="/employee/{{employee.id}}/edit" class="btn btn-outline-success btn-sm float-right">Show/Edit</a>
-                                    </div>
-                                    <div class="col-6">
-                                        <button (click)="deleteEmployee(employee.id)" class="btn btn-outline-danger btn-sm float-right">Delete</button>
+    <div class="row">
+        <div class="col-lg-8 offset-lg-2 col-12 offset-0">
+            <div class="card">
+                <div class="card-header">
+                    <div class="row">
+                        <div class="col-10">
+                            <span>Employees List</span>
+                        </div>
+                        <div class="col-lg-2">
+                                <a routerLink="/employee/create" class="btn btn-outline-success btn-sm">
+                                    <i class="material-icons">
+                                        add
+                                    </i>
+                                </a>
+                                <button (click)="downloadCSV()" class="btn btn-outline-info btn-sm">
+                                    <i class="material-icons">cloud_download</i>
+                                </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <img src="assets/images/loading.gif" alt="Loading" class="loading-img" *ngIf="loading">
+                    <ul class="employees-list">
+                        <li *ngFor="let employee of employees">
+                            <div class="row">
+                                <div class="col-10">
+                                    <h5 class="card-title">{{ employee.name }}</h5>
+                                    <p class="card-text">{{ employee.age }}, {{ employee.gender }}</p>
+                                    <p *ngIf="employee.job.title !== undefined">
+                                        <strong>Job: </strong>{{ employee.job.title }} <small><span *ngIf="employee.job.monthly_pay !== undefined">(monthly pay of {{ employee.job.monthly_pay }}$)</span></small>
+                                    </p>
+                                </div>
+                                <div class="col-2">
+                                    <div class="row float-left">
+                                        <div class="col-5">
+                                            <a routerLink="/employee/{{employee.id}}/edit" class="btn btn-outline-success btn-sm float-right">
+                                                <i class="material-icons">remove_red_eye</i><i   class="material-icons">edit</i>
+                                            </a>
+                                        </div>
+                                        <div class="col-5">
+                                            <button (click)="deleteEmployee(employee.id)" class="btn btn-outline-danger btn-sm float-right">
+                                                <i class="material-icons">delete</i>
+                                            </button>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    </li>
-                </ul>
+                        </li>
+                    </ul>
+                </div>
             </div>
         </div>
     </div>
-</div>

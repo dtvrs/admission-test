@@ -8,6 +8,11 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Serializer\Serializer;
+use Symfony\Component\Serializer\Encoder\CsvEncoder;
+use Symfony\Component\Serializer\Encoder\JsonEncoder;
+use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;;
 
 
 /**
@@ -51,6 +56,33 @@ class EmployeesController extends Controller
         } catch (\Exception $e) {
             return new JsonResponse(['error' => 'Something bad happened when retrieving the employees -> ' . $e], 500);
         }
+    }
+
+     /**
+     * List all available employees
+     *
+     * @Route("/export-csv", name="employees_list_csv")
+     * @Method({"GET"})
+     */
+    public function exportCSVAction(Request $request)
+    {
+        $em           = $this->getDoctrine()->getManager();
+        $employeeRepo = $em->getRepository('AppBundle:Employee');
+        $employeeList = $employeeRepo->findAll();
+
+        $employeesCSV = Employee::toCSV($employeeList);
+
+        $response = new Response;
+
+        $response->headers->set('Content-type', 'text/csv');
+        $response->headers->set('Content-Disposition', 'attachment; filename="employees-export.csv";');
+        $response->headers->set('Content-length',  strlen($employeeList));
+
+        $response->sendHeaders();
+
+        $response->setContent($employeesCSV);
+
+        return $response;
     }
 
     /**
@@ -112,7 +144,7 @@ class EmployeesController extends Controller
      * @Route("/{employeeId}", name="employees_show")
      * @Method({"GET"})
      */
-    public function actionShow($employeeId)
+    public function showAction($employeeId)
     {
         try {
             $em       = $this->getDoctrine()->getManager();
@@ -195,7 +227,7 @@ class EmployeesController extends Controller
      * @Route("/{employeeId}", name="employees_delete")
      * @Method({"DELETE"})
      */
-    public function actionDelete($employeeId)
+    public function deleteAction($employeeId)
     {
         try {
             $em       = $this->getDoctrine()->getManager();

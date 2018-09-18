@@ -35,4 +35,8 @@ export class ApiService {
   updateEmployee(employee: Employee) {
     return this.http.put('/api/employees/' + employee.id, employee)
   }
+
+  downloadCSV() {
+    window.open('/api/employees/export-csv','_blank');
+  }
 }

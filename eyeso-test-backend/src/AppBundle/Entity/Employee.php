@@ -152,6 +152,59 @@ class Employee {
     }
 
     /**
+     * Undocumented function
+     *
+     * @param array $employee
+     * @return string
+     */
+    public static function toCSV(array $employees): string
+    {
+        $separator = ",";
+        
+        $headers = sprintf(
+            'ID%sNAME%sAGE%sGENDER%sJOB ID%sJOB TITLE%sMONTHLY PAY',
+            $separator,
+            $separator,
+            $separator,
+            $separator,
+            $separator,
+            $separator
+        );
+
+        $body = [
+            $headers
+        ];
+
+        foreach ($employees as $key => $employee) {
+            $data = [];
+
+            if (!($employee instanceof self)) {
+                continue;
+            }
+
+            $data['id']         = $employee->getId();
+            $data['name']       = $employee->getName();
+            $data['age']        = $employee->getAge();
+            $data['gender']     = $employee->getGender();
+            $data['jobId']      = $employee->getJob()->getId();
+            $data['jobTitle']   = $employee->getJob()->getTitle();
+            $data['monthlyPay'] = $employee->getJob()->getMonthlyPay();
+            
+            $data['id']         = strpos($data['id'], $separator)         === false ? $data['id'] : sprintf('"%s"', $data['id']);
+            $data['name']       = strpos($data['name'], $separator)       === false ? $data['name'] : sprintf('"%s"', $data['name']);
+            $data['age']        = strpos($data['age'], $separator)        === false ? $data['age'] : sprintf('"%s"', $data['age']);
+            $data['gender']     = strpos($data['gender'], $separator)     === false ? $data['gender'] : sprintf('"%s"', $data['gender']);
+            $data['jobId']      = strpos($data['jobId'], $separator)      === false ? $data['jobId'] : sprintf('"%s"', $data['jobId']);
+            $data['jobTitle']   = strpos($data['jobTitle'], $separator)   === false ? $data['jobTitle'] : sprintf('"%s"', $data['jobTitle']);
+            $data['monthlyPay'] = strpos($data['monthlyPay'], $separator) === false ? $data['monthlyPay'] : sprintf('"%s"', $data['monthlyPay']);
+
+            array_push($body, implode($separator, $data));
+        }
+
+        return implode(PHP_EOL, $body);
+    }
+
+    /**
      * End Getters/Setters
      */
 
@@ -167,6 +220,4 @@ class Employee {
 
         return self::$genderOptions;
     }
-
-
 }
