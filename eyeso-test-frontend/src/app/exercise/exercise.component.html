@@ -3,7 +3,7 @@
         <div class="card">
             <div class="card-header">
                 <span>Exercise 1 - Job Information</span>
-                <span class="float-right"><input type="checkbox" name="task[]"></span>
+                <span class="float-right"><input type="checkbox" [(ngModel)]="tasks[0].value" [checked]="tasks[0][value]" (change)="taskChanged(0)"></span>
             </div>
             <div class="card-body">
                 <p>
@@ -14,7 +14,7 @@
         <div class="card">
             <div class="card-header">
                 <span>Exercise 2 - CRUD</span>
-                <span class="float-right"><input type="checkbox" name="task[]"></span>
+                <span class="float-right"><input type="checkbox" [(ngModel)]="tasks[1].value" [checked]="tasks[1][value]" (change)="taskChanged(1)"></span>
             </div>
             <div class="card-body">
                 <p>
@@ -31,7 +31,7 @@
         <div class="card">
             <div class="card-header">
                 <span>Exercise 3 - Unit Testing</span>
-                <span class="float-right"><input type="checkbox" name="task[]"></span>
+                <span class="float-right"><input type="checkbox" [(ngModel)]="tasks[2].value" [checked]="tasks[2][value]" (change)="taskChanged(2)"></span>
             </div>
             <div class="card-body">
                 <p>
@@ -42,7 +42,7 @@
         <div class="card">
             <div class="card-header">
                 <span>Exercise 4 - Export Data</span>
-                <span class="float-right"><input type="checkbox" name="task[]"></span>
+                <span class="float-right"><input type="checkbox" [(ngModel)]="tasks[3].value" [checked]="tasks[3][value]" (change)="taskChanged(3)"></span>
             </div>
             <div class="card-body">
                 <p>
@@ -53,7 +53,7 @@
         <div class="card">
             <div class="card-header">
                 <span>Exercise 5 - Task tracking</span>
-                <span class="float-right"><input type="checkbox" name="task[]"></span>
+                <span class="float-right"><input type="checkbox" [(ngModel)]="tasks[4].value" [checked]="tasks[4][value]" (change)="taskChanged(4)"></span>
             </div>
             <div class="card-body">
                 <p>
@@ -70,7 +70,7 @@
         <div class="card">
             <div class="card-header">
                 <span>Optional Exercise 1 - Responsive Menu</span>
-                <span class="float-right"><input type="checkbox" name="task[]"></span>
+                <span class="float-right"><input type="checkbox" [(ngModel)]="tasks[5].value" [checked]="tasks[5][value]" (change)="taskChanged(5)"></span>
             </div>
             <div class="card-body">
                 <p>
@@ -81,7 +81,7 @@
         <div class="card">
             <div class="card-header">
                 <span>Optional Exercise 2 - Age Increment</span>
-                <span class="float-right"><input type="checkbox" name="task[]"></span>
+                <span class="float-right"><input type="checkbox" [(ngModel)]="tasks[6].value" [checked]="tasks[6][value]" (change)="taskChanged(6)"></span>
             </div>
             <div class="card-body">
                 <p>
@@ -98,7 +98,7 @@
         <div class="card">
             <div class="card-header">
                 <span>Optional Exercise 3 - Filter</span>
-                <span class="float-right"><input type="checkbox" name="task[]"></span>
+                <span class="float-right"><input type="checkbox" [(ngModel)]="tasks[7].value" [checked]="tasks[7][value]" (change)="taskChanged(7)"></span>
             </div>
             <div class="card-body">
                 <p>

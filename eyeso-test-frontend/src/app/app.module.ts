@@ -6,6 +6,7 @@ import { ApiService } from './api.service';
 import { AppRoutingModule } from './app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastModule } from 'ng2-toastr/ng2-toastr';
+import { LocalStorageModule } from '@ngx-pwa/local-storage';
 
 // Components
 import { AppComponent } from './app.component';
@@ -26,6 +27,7 @@ import { EmployeeEditComponent } from './employee-edit/employee-edit.component';
     ],
     imports: [
         BrowserModule,
+        LocalStorageModule,
         FormsModule,
         HttpClientModule,
         AppRoutingModule,
