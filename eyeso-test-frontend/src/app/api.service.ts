@@ -17,7 +17,7 @@ export class ApiService {
   }
 
   getJobs() {
-    return this.http.get('api/job/')
+    return this.http.get('api/job')
   }
 
   createEmployee(employee: Employee) {

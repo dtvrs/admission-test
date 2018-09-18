@@ -23,7 +23,7 @@ class JobController extends Controller
     use ApiControllerHelperTrait;
 
     /**
-     * @Route("/")
+     * @Route("")
      */
     public function indexAction()
     {

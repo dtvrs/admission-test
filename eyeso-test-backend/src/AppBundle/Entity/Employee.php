@@ -16,7 +16,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 class Employee {
 
     protected static $genderOptions = array(
-        'eyeso.admissiontest.employee.male' => 'male',
+        'eyeso.admissiontest.employee.male'   => 'male',
         'eyeso.admissiontest.employee.female' => 'female',
     );
 
@@ -103,6 +103,7 @@ class Employee {
 
     public function setCreated($created) {
         $this->created = $created;
+        return $this;
     }
 
     public function getUpdated() {
@@ -111,6 +112,7 @@ class Employee {
 
     public function setUpdated($updated) {
         $this->updated = $updated;
+        return $this;
     }
 
     public function getName() {
@@ -119,6 +121,7 @@ class Employee {
 
     public function setName($name) {
         $this->name = $name;
+        return $this;
     }
 
     public function getAge() {
@@ -127,6 +130,7 @@ class Employee {
 
     public function setAge($age) {
         $this->age = $age;
+        return $this;
     }
 
     public function getGender() {
@@ -135,6 +139,7 @@ class Employee {
 
     public function setGender($gender) {
         $this->gender = $gender;
+        return $this;
     }
 
     public function getJob() {
@@ -143,6 +148,7 @@ class Employee {
 
     public function setJob($job) {
         $this->job = $job;
+        return $this;
     }
 
     /**

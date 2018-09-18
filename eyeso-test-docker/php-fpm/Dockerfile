@@ -7,6 +7,9 @@ RUN apt-get update && apt-get install -y --no-install-recommends --no-install-su
     zlib1g-dev \
     libicu-dev
 
+# SQLITE FOR TEST UNITS
+RUN apt-get install -y sqlite3 libsqlite3-dev 
+
 # Enable locales
 RUN sed -i 's/# en_GB.UTF-8 UTF-8/en_GB.UTF-8 UTF-8/' /etc/locale.gen \
     && sed -i 's/# de_DE.UTF-8 UTF-8/de_DE.UTF-8 UTF-8/' /etc/locale.gen \

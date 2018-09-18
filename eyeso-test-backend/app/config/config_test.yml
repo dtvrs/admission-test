@@ -8,6 +8,12 @@ framework:
     profiler:
         collect: false
 
+doctrine:
+    dbal:
+        driver: pdo_sqlite
+        path: '%kernel.project_dir%/var/data/data.sqlite'
+        charset: UTF8
+
 web_profiler:
     toolbar: false
     intercept_redirects: false
