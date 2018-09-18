@@ -1,0 +1,44 @@
+<form (ngSubmit)="createEmployee()" #employeeForm="ngForm">
+  <div class="form-group">
+    <label for="name">Name</label>
+    <input type="text" class="form-control" id="name" placeholder="Enter name" [(ngModel)]="employee.name" name="name"
+      required>
+    <div class="row errors" *ngIf="propertyFormErrorExist('name')">
+      <div class="col-12" *ngFor="let message of propertyFormErrorGetMessages('name')">
+        <small id="name-errors" class="form-text text-danger">{{message}}</small>
+      </div>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="age">Age</label>
+    <input type="number" class="form-control" id="age" placeholder="Age" [(ngModel)]="employee.age" name="age" required>
+    <div class="row errors" *ngIf="propertyFormErrorExist('age')">
+      <div class="col-12" *ngFor="let message of propertyFormErrorGetMessages('age')">
+        <small id="name-errors" class="form-text text-danger">{{message}}</small>
+      </div>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="gender">Gender</label>
+    <select id="gender" class="custom-select" [(ngModel)]="employee.gender" name="gender" required>
+      <option *ngFor="let gender of genders" [value]="gender.value">{{gender.display}}</option>
+    </select>
+    <div class="row errors" *ngIf="propertyFormErrorExist('gender')">
+      <div class="col-12" *ngFor="let message of propertyFormErrorGetMessages('gender')">
+        <small id="name-errors" class="form-text text-danger">{{message}}</small>
+      </div>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="jobId">Job</label>
+    <select id="jobId" class="custom-select" [(ngModel)]="employee.jobId" name="jobId" required>
+      <option *ngFor="let job of jobs" [value]="job.id">{{job.title}}</option>
+    </select>
+    <div class="row errors" *ngIf="propertyFormErrorExist('jobId')">
+      <div class="col-12" *ngFor="let message of propertyFormErrorGetMessages('jobId')">
+        <small id="name-errors" class="form-text text-danger">{{message}}</small>
+      </div>
+    </div>
+  </div>
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>

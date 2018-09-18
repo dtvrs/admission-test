@@ -161,7 +161,7 @@ class EmployeesController extends Controller
         }
 
             $errors = $this->get('validator')->validate($employee);
-        $errors = $this->buildApiErrors($errors);
+        $errors     = $this->buildApiErrors($errors);
 
         if (isset($body['jobId'])) {
             $job = $em->getRepository('AppBundle:Job')->find($body['jobId']);

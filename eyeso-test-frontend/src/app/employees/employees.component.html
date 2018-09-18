@@ -3,16 +3,31 @@
         <div class="card">
             <div class="card-header">
                 <span>Employees List</span>
+                <a routerLink="/employee/create" class="btn btn-outline-info btn-sm float-right">Create Employee</a>
             </div>
             <div class="card-body">
                 <img src="assets/images/loading.gif" alt="Loading" class="loading-img" *ngIf="loading">
                 <ul class="employees-list">
                     <li *ngFor="let employee of employees">
-                        <h5 class="card-title">{{ employee.name }}</h5>
-                        <p class="card-text">{{ employee.age }}, {{ employee.gender }}</p>
-                        <p *ngIf="employee.job.title !== undefined">
-                            <strong>Job: </strong>{{ employee.job.title }} <small><span *ngIf="employee.job.monthly_pay !== undefined">(monthly pay of {{ employee.job.monthly_pay }}$)</span></small>
-                        </p>
+                        <div class="row">
+                            <div class="col-10">
+                                <h5 class="card-title">{{ employee.name }}</h5>
+                                <p class="card-text">{{ employee.age }}, {{ employee.gender }}</p>
+                                <p *ngIf="employee.job.title !== undefined">
+                                    <strong>Job: </strong>{{ employee.job.title }} <small><span *ngIf="employee.job.monthly_pay !== undefined">(monthly pay of {{ employee.job.monthly_pay }}$)</span></small>
+                                </p>
+                            </div>
+                            <div class="col-2">
+                                <div class="row">
+                                    <div class="col-6">
+                                        <a routerLink="/employee/{{employee.id}}/edit" class="btn btn-outline-success btn-sm float-right">Show/Edit</a>
+                                    </div>
+                                    <div class="col-6">
+                                        <button (click)="deleteEmployee(employee.id)" class="btn btn-outline-danger btn-sm float-right">Delete</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </li>
                 </ul>
             </div>
