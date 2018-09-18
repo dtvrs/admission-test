@@ -3,16 +3,16 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
   <div class="container">
       <a class="navbar-brand" routerLink="">EYESO <span>Admission Test</span></a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+    <button class="navbar-toggler" type="button" (click)="navBarCollapsed = !navBarCollapsed">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse" id="navbarResponsive">
+    <div class="collapse navbar-collapse" [ngClass]="{ 'show': navBarCollapsed }" id="navbarResponsive">
       <ul class="navbar-nav ml-auto">
         <li class="nav-item">
           <a class="nav-link" routerLink="employees" routerLinkActive="active">Employees</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" routerLink="exercise" routerLinkActive="active">Exercise</a>
+          <a class="nav-link" routerLink="exercise" routerLinkActive="active">Exercise - <small>Finished (<strong>{{totalFinishedTasks}}</strong>)</small></a>
         </li>
       </ul>
     </div>

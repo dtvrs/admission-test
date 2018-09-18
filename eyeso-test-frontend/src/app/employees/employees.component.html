@@ -6,7 +6,7 @@
                         <div class="col-10">
                             <span>Employees List</span>
                         </div>
-                        <div class="col-lg-2">
+                        <div class="col-2">
                                 <a routerLink="/employee/create" class="btn btn-outline-success btn-sm">
                                     <i class="material-icons">
                                         add
@@ -23,7 +23,7 @@
                     <ul class="employees-list">
                         <li *ngFor="let employee of employees">
                             <div class="row">
-                                <div class="col-10">
+                                <div class="col-9">
                                     <h5 class="card-title">{{ employee.name }}</h5>
                                     <p class="card-text">{{ employee.age }}, {{ employee.gender }}</p>
                                     <p *ngIf="employee.job.title !== undefined">
