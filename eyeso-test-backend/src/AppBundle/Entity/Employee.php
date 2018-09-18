@@ -76,6 +76,11 @@ class Employee {
     protected $job;
 
     /**
+     * @ORM\Column(type="date")
+     */
+    protected $birthday;
+
+    /**
      * @ORM\PrePersist
      */
     public function prePersist() {
@@ -148,6 +153,16 @@ class Employee {
 
     public function setJob($job) {
         $this->job = $job;
+        return $this;
+    }
+
+    public function getBirthday()
+    {
+        return $this->birthday;
+    }
+
+    public function setBirthday($birthday) {
+        $this->birthday = $birthday;
         return $this;
     }
 

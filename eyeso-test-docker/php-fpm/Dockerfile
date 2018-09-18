@@ -8,7 +8,15 @@ RUN apt-get update && apt-get install -y --no-install-recommends --no-install-su
     libicu-dev
 
 # SQLITE FOR TEST UNITS
-RUN apt-get install -y sqlite3 libsqlite3-dev 
+RUN apt-get install -y sqlite3 libsqlite3-dev
+
+RUN apt-get update && apt-get -y install cron
+
+ADD birthday-cron /etc/cron.d/birthday-cron
+RUN chmod 0644 /etc/cron.d/birthday-cron
+RUN crontab /etc/cron.d/birthday-cron
+RUN touch /var/log/cron.log
+CMD cron && tail -f /var/log/cron.log
 
 # Enable locales
 RUN sed -i 's/# en_GB.UTF-8 UTF-8/en_GB.UTF-8 UTF-8/' /etc/locale.gen \

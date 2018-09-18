@@ -1,0 +1,1 @@
+0 0 * * * root php /var/www/backend/bin/console app:employee-birthday-age-increment >> /var/log/cron.log 2>&1
